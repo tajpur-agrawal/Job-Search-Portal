@@ -1,0 +1,54 @@
+.job-wrapper {
+ display: flex;
+ margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.job-icon-wrapper {
+width: 40px;
+}
+
+.job-summary-wrapper {
+    margin-left: 5%;
+}
+
+.job-title {
+    font-weight: bold;
+    color: black;
+    font-size: 16px;
+
+
+}
+
+.job-sub-title-wrapper {
+    display: flex;
+    color: black;
+    margin-top: 0;
+    font-weight: 200;
+    font-size: 10px ;
+
+}
+
+.company {
+    font-size: 8px ;
+}
+
+.reference {
+    font-size: 8px ;
+
+}
+
+.star-icon-wrapper {
+    /* margin-left: 400px; */
+    position: absolute;
+    right: 68px;
+
+}
+
+
+
+
+span[id$='avStar']
+{
+    background-color: green;    
+}

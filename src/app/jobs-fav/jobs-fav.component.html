@@ -1,0 +1,33 @@
+
+<div class="fav-empty" *ngIf="favouriteList.length < 1">No favourite selected</div>
+<div class="fav-wrapper">
+
+    <div class="container" *ngFor="let job of favouriteList; index as i">
+        
+        
+        <div class="job-wrapper">
+            <div class="job-icon-wrapper">
+                <img [src]="job.companyLogo" alt="alternatetext">
+            </div>
+            <div class="job-summary-wrapper">
+                <a
+                [routerLink]="['/details']"
+                [state]="{ id: job.id, origin: '/fav' }">
+                {{ job.title }}
+              </a>
+                
+                
+                <div class="job-sub-title-wrapper">
+                    
+                    <div class="company">Company: {{ job.companyName }}</div>
+                    <div class="reference">&nbsp; Reference: {{ job.reference}}</div>
+                </div>
+                
+            </div>
+            
+            <!-- <div class="star-icon-wrapper">
+                <span class="icon-star" ></span>   
+            </div> -->
+        </div>
+    </div>
+</div>

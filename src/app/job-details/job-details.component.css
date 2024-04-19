@@ -1,0 +1,68 @@
+.back-cta {   
+    position: relative; 
+    margin-top: 20px;  
+    cursor:pointer;
+    width: 60px;
+ }
+
+#home-img {
+    width: 17px;
+    margin-right: 5px;
+}
+
+#back-text {
+    position: absolute;
+    top: 3px;
+    color: black;
+}
+
+
+
+.heading-wrapper {
+    display: flex;
+    margin-top: 15px;
+}
+
+.job-icon-wrapper {
+    width: 40px;
+}
+
+.title {
+    margin-left: 5px;
+    font-weight: bold;
+    color: black;
+    font-size: 26px;
+}
+
+.pills-wrapper {
+    display: flex;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.duration-type {
+    margin-left: 50px;
+    background-color: #7393B3;
+    /* width: 30px; */
+    /* border: 15px solid green; */
+    border-radius: 43px;
+    padding: 0px 23px;
+    /* margin: 20px; */
+}
+
+.recruit-type {
+    margin-left: 15px;
+    background-color: #7393B3;   
+    border-radius: 43px;
+    padding: 0px 23px;
+}
+
+.detail-points {
+    color: black;
+    margin-left: 10px;
+}
+
+.detail-pt-title {
+    font-weight: bold;
+}

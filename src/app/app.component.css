@@ -1,0 +1,9 @@
+.global-wrapper {
+    width: 100%;
+    background-color: lightgray;
+}
+
+.nav {
+    /* padding-left: 150px;
+    padding-right: 150px; */
+}

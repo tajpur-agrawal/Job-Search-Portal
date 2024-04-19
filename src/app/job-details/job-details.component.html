@@ -1,0 +1,46 @@
+
+<div class="container">
+    <div class="back-cta"><a id="back-anchor" (click)="clickBackBtn()"><img src="/assets/home.jpg" id="home-img"><span id="back-text">Back</span> </a></div>
+
+
+<div class="heading-wrapper">
+
+    <div class="job-icon-wrapper">
+        <img [src]="jobDetails.companyLogo" alt="alternatetext">
+    </div>
+    <div class="title">{{jobDetails.companyName}} - {{jobDetails.title}}</div>
+    
+</div>
+
+<div class="pills-wrapper">
+    <div class="duration-type">{{jobDetails.types}}</div>
+    <div class="recruit-type">{{jobDetails.industries}}</div>
+</div>
+
+
+<div class="detail-points">
+    <span class="detail-pt-title">Publish Date: </span>
+    <span class="detail-pt-text">{{jobDetails.location}}</span>
+
+</div>
+
+<div class="detail-points">
+    <span class="detail-pt-title">Location: </span>
+    <span class="detail-pt-text">{{jobDetails.publishDate}}</span>
+
+
+</div>
+<div class="detail-points">
+    <span class="detail-pt-title">Reference: </span>
+    <span class="detail-pt-text"> {{jobDetails.reference}} </span>
+    
+</div>
+<div class="detail-points">
+    <span class="detail-pt-title"> Description </span>
+    <span class="detail-pt-text" [innerHTML]="jobDetails.description"></span>
+    <!-- <span class="detail-pt-text" >{{jobDetails.description}}</span> -->
+</div>
+
+
+
+</div>
