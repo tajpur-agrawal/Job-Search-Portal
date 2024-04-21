@@ -16,6 +16,7 @@ import { Router, RouterModule } from '@angular/router';
 
 export class JobsHomeComponent implements OnInit {
   jobList: any;
+  duplicateFlag: boolean = false;
   
   constructor( private jobService: JobService, 
                private elementRef: ElementRef,
@@ -25,14 +26,21 @@ export class JobsHomeComponent implements OnInit {
   }
   ngOnInit() {
     this.getJobList();
-    console.log('Anuj in ngOnInit');
 
-    setTimeout(() => {
-      this.jobService.favIDs.forEach((element: any) => {
-        let starId=document.getElementById(element);
-        starId?.setAttribute('id', 'favStar');
+    // setTimeout(() => {
+    //   this.jobService.favIDs.forEach((element: any) => {
+    //     let starId=document.getElementById(element);
+    //     starId?.setAttribute('id', 'favStar');
+    //   });
+    // }, 500);
+
+
+    setTimeout( () => {
+      this.jobService.favouriteList.forEach( (data: any) => {
+        let starIdNew=document.getElementById('star-'+data.id);
+        starIdNew?.setAttribute("style", "color:yellow;");        
       });
-    }, 500);
+    }, 50);
        
   } 
 
@@ -74,6 +82,25 @@ export class JobsHomeComponent implements OnInit {
   }
 
   
-  
+  addToFavouriteNew(job: any, event: any) {
+    let favClickedElementID = event.srcElement.id;
+    let favClickedElement = document.getElementById(favClickedElementID)
+    
+    this.duplicateFlag = false;
+    this.jobService.favouriteList.forEach( (data: any) => {
+         if(data.id === job.id) {
+           this.duplicateFlag = true; 
+           this.jobService.favouriteList = this.jobService.favouriteList.filter(function (dupData: any) {
+            return dupData !== data;            
+          });
+        }      
+    }); 
 
+    if (this.duplicateFlag === false) {
+      this.jobService.favouriteList.push(job)
+      favClickedElement?.setAttribute("style", "color:yellow;");
+    } else {
+      favClickedElement?.setAttribute("style", "color:unset;");
+    }    
+  }
 }

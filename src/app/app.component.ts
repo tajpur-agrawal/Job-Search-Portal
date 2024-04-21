@@ -25,11 +25,6 @@ export class AppComponent implements OnInit {
 
   }
   clickFavTab() {
-    console.log('anuj, active');
     this.router.navigate(['/fav']);
-
-    // this.active = !this.active;
-    
-    // this.active ? this.active ='' : this.active='active';
   }
 }
