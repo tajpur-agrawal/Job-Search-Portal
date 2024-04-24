@@ -18,6 +18,7 @@ import { Job } from '../modal/job';
 export class JobsHomeComponent implements OnInit {
   jobList: Job[] = [];
   duplicateFlag: boolean = false;
+  favList: Job[] = [];
   
   constructor( private jobService: JobService, 
                private elementRef: ElementRef,
@@ -26,18 +27,12 @@ export class JobsHomeComponent implements OnInit {
   ) {
   }
   ngOnInit() {
-    this.getJobList();
-
-    // setTimeout(() => {
-    //   this.jobService.favIDs.forEach((element: any) => {
-    //     let starId=document.getElementById(element);
-    //     starId?.setAttribute('id', 'favStar');
-    //   });
-    // }, 500);
-
-
-    setTimeout( () => {
-      this.jobService.favouriteList.forEach( (data: Job) => {
+    this.getJobList();    
+    var local = localStorage.getItem("favJobList");
+    this.favList = local? JSON.parse(local): {};
+    this.jobService.favouriteList = this.favList
+    setTimeout( () => {     
+      this.favList.forEach( (data: Job) => {
         let starIdNew=document.getElementById('star-'+data.id);
         starIdNew?.setAttribute("style", "color:yellow;");        
       });
@@ -45,12 +40,6 @@ export class JobsHomeComponent implements OnInit {
        
   } 
 
-  ngAfterViewChecked() {
-    // this.jobService.favIDs.forEach((element: any) => {
-    //   let starId=document.getElementById(element);
-    //   starId?.setAttribute('id', 'favStar');
-    // });
-  }
   
   getJobList() {
     this.jobService.callJobService().subscribe( data => { 
@@ -58,35 +47,12 @@ export class JobsHomeComponent implements OnInit {
     });
   }
 
-  addToFavourite(job: Job, event: any) {
-
-    let elementId = event.srcElement.id;
-    this.jobService.favouriteList.push(job);
-    
-    localStorage.setItem('favJobList',JSON.stringify(this.jobService.favouriteList))
-   
-    this.toggleStar(job, elementId);
-  }
-
-  toggleStar(job: any, elementId: any) {
-    
-    let starId=document.getElementById(elementId);
-    
-    if(elementId!='favStar'){      
-          starId?.setAttribute('id', 'favStar');
-    }
-    else {      
-      starId?.setAttribute('id', job.id);
-    }
-
-    this.jobService.favIDs.push(job.id);
-  }
-
+ 
   
   addToFavouriteNew(job: Job, event: Event) {    
     let favClickedElementID = (event.target as HTMLButtonElement).id;
     let favClickedElement = document.getElementById(favClickedElementID)
-    
+
     this.duplicateFlag = false;
     this.jobService.favouriteList.forEach( (data: Job) => {
          if(data.id === job.id) {
@@ -96,9 +62,11 @@ export class JobsHomeComponent implements OnInit {
           });
         }      
     }); 
+    localStorage.setItem('favJobList',JSON.stringify(this.jobService.favouriteList));
 
     if (this.duplicateFlag === false) {
       this.jobService.favouriteList.push(job)
+      localStorage.setItem('favJobList',JSON.stringify(this.jobService.favouriteList));
       favClickedElement?.setAttribute("style", "color:yellow;");
     } else {
       favClickedElement?.setAttribute("style", "color:unset;");

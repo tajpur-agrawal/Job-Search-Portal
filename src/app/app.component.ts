@@ -12,12 +12,26 @@ import { Router, RouterOutlet } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'ng-job-search';
   active = false;
+  firstTab: string = '';
+  secondTab: string = '';
 
   constructor(private router: Router) {
     
   }
   ngOnInit() {
-    localStorage.setItem('favJobList',JSON.stringify(''))
+    this.router.events.subscribe((val) => {
+      const currentPage = this.router.url; 
+      if (currentPage === '/home') {
+        this.firstTab ='active';
+        this.secondTab = '';
+      } else if(currentPage === '/fav'){
+        this.firstTab ='';
+        this.secondTab = 'active';
+      } else {
+        this.firstTab ='active';
+        this.secondTab = '';
+      }
+   });   
   }
 
   clickJobsTab() {

@@ -18,11 +18,10 @@ export class JobsFavComponent {
   }
 
   ngOnInit() {
-    this.favouriteList = [];
-    // var local = localStorage.getItem("favJobList");
-
-    // this.favouriteList = local? JSON.parse(local): {};
-    this.favouriteList = this.jobService.favouriteList;
+    // this.favouriteList = [];
+    // this.favouriteList = this.jobService.favouriteList;
+    var local = localStorage.getItem("favJobList");
+    this.favouriteList = local? JSON.parse(local): {};
     
   }
 

@@ -10,6 +10,7 @@ import { Job } from './app/modal/job';
 export class JobService {
 
   favouriteList: Job[] =[];
+  // favouriteList: any;
   favIDs: string[]=[];
 
   constructor( private httpClient: HttpClient) { }
