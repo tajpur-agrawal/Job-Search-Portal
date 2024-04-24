@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import {HttpClient} from "@angular/common/http";
+import { Job } from './app/modal/job';
 
 
 @Injectable({
@@ -8,8 +9,8 @@ import {HttpClient} from "@angular/common/http";
 })
 export class JobService {
 
-  favouriteList: any=[];
-  favIDs: any=[];
+  favouriteList: Job[] =[];
+  favIDs: string[]=[];
 
   constructor( private httpClient: HttpClient) { }
 

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { JobService } from '../../job.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { Job } from '../modal/job';
 
 @Component({
   selector: 'app-jobs-fav',
@@ -11,7 +12,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './jobs-fav.component.css'
 })
 export class JobsFavComponent {
-  favouriteList:any=[];
+  favouriteList: Job[] = [];
   constructor(private jobService: JobService) {
 
   }

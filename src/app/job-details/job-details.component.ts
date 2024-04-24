@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { JobService } from '../../job.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { map } from 'rxjs';
+import { JobDetails } from '../modal/job-detail';
 
 @Component({
   selector: 'app-job-details',
@@ -13,7 +14,7 @@ import { map } from 'rxjs';
 
 export class JobDetailsComponent {
   jobId: string = '';
-  jobDetails: any;
+  jobDetails: JobDetails = { };
   origin: string = '';
   
   constructor(private jobService: JobService, 
@@ -37,9 +38,8 @@ export class JobDetailsComponent {
   }
 
   getJobDetails() {
-    let id: any;
     this.jobService.callJobDetailsWithId(this.jobId).subscribe( data => { 
-      this.jobDetails = data;
+      this.jobDetails = data;      
       
   
     });

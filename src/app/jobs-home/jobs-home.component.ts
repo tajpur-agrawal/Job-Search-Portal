@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { JobService } from '../../job.service';
 import {CommonModule} from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { Job } from '../modal/job';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { Router, RouterModule } from '@angular/router';
 
 
 export class JobsHomeComponent implements OnInit {
-  jobList: any;
+  jobList: Job[] = [];
   duplicateFlag: boolean = false;
   
   constructor( private jobService: JobService, 
@@ -36,7 +37,7 @@ export class JobsHomeComponent implements OnInit {
 
 
     setTimeout( () => {
-      this.jobService.favouriteList.forEach( (data: any) => {
+      this.jobService.favouriteList.forEach( (data: Job) => {
         let starIdNew=document.getElementById('star-'+data.id);
         starIdNew?.setAttribute("style", "color:yellow;");        
       });
@@ -57,7 +58,7 @@ export class JobsHomeComponent implements OnInit {
     });
   }
 
-  addToFavourite(job: any, event: any) {
+  addToFavourite(job: Job, event: any) {
 
     let elementId = event.srcElement.id;
     this.jobService.favouriteList.push(job);
@@ -82,15 +83,15 @@ export class JobsHomeComponent implements OnInit {
   }
 
   
-  addToFavouriteNew(job: any, event: any) {
-    let favClickedElementID = event.srcElement.id;
+  addToFavouriteNew(job: Job, event: Event) {    
+    let favClickedElementID = (event.target as HTMLButtonElement).id;
     let favClickedElement = document.getElementById(favClickedElementID)
     
     this.duplicateFlag = false;
-    this.jobService.favouriteList.forEach( (data: any) => {
+    this.jobService.favouriteList.forEach( (data: Job) => {
          if(data.id === job.id) {
            this.duplicateFlag = true; 
-           this.jobService.favouriteList = this.jobService.favouriteList.filter(function (dupData: any) {
+           this.jobService.favouriteList = this.jobService.favouriteList.filter(function (dupData: Job) {
             return dupData !== data;            
           });
         }      
