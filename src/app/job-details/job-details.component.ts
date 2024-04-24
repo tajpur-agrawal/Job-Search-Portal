@@ -14,7 +14,7 @@ import { JobDetails } from '../modal/job-detail';
 
 export class JobDetailsComponent {
   jobId: string = '';
-  jobDetails: JobDetails = { };
+  jobDetails: JobDetails = {};
   origin: string = '';
   
   constructor(private jobService: JobService, 
