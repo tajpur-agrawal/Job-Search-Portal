@@ -29,7 +29,7 @@ export class JobsHomeComponent implements OnInit {
   ngOnInit() {
     this.getJobList();    
     var local = localStorage.getItem("favJobList");
-    this.favList = local? JSON.parse(local): {};
+    this.favList = local? JSON.parse(local): [];
     this.jobService.favouriteList = this.favList
     setTimeout( () => {     
       this.favList.forEach( (data: Job) => {
